@@ -21,6 +21,7 @@ WORKING_DIRECTORY=$(cd $(dirname $0); pwd)
 DEBUG=0
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+SCRIPT_DIR_PARENT="$(dirname "$SCRIPT_DIR")"
 
 # Variables to hold parts of the manifest
 MANIFEST_VERSION="v1.00"
