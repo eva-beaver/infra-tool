@@ -22,8 +22,6 @@ DEBUG=0
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-GIT_BASE_URI="git@stash.org:payments"
-
 # Variables to hold parts of the manifest
 MANIFEST_VERSION="v1.00"
 MANIFEST_TYPE="java"

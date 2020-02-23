@@ -30,7 +30,7 @@ If componets are missing the script will let you know what is mising.
 * jq
 * Git
 * Maven
-* Gradle
+* Gradle (to install wrapper > gradle wrapper --gradle-version 6.2 --distribution-type all)
 * sdkman
 * Docker & docker-compose
 * Up to date version of bash
