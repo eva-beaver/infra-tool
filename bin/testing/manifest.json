@@ -1,0 +1,103 @@
+{ "version": "v1.00", 
+  "type": "java", 
+  "info": { 
+    "id": 1, 
+    "name": "dummyproject",
+    "repository": "xxxxxxxxxxxxxx",
+    "description": "Some dummy project.", 
+    "categories": []
+  },
+  "build": {
+    "buildType": "Maven",     
+    "jdk": "8u131",
+    "command": " clean install",
+    "targetJarName": "sample-app-0.0.1-SNAPSHOT",
+    "removeTarget": 1
+  },
+  "run": {
+    "command": "java -jar  ",
+    "targetJarName": "sample-app-0.0.1-SNAPSHOT"
+  },
+  "docker": { 
+    "baseImagePrefix": "",
+    "baseImageName": "adoptopenjdk/openjdk11",
+    "containerName": "mycontainer",
+    "version": "v1",
+    "instanceName": "dummyproject",
+    "ports": "9010:9010, 9011:9011",
+    "removeDocker": 1,
+    "health": { 
+      "cmd": "curl --silent --fail localhost:9010/actuator/health || exit 1",
+      "interval": "5s",
+      "retries": "12", 
+      "timeout": "2s",     
+      "startperiod": "60s"
+    },
+    "network": "mynet",
+    "ip": "",
+    "springBootProfiles": "docker",
+    "environmentOptions": [
+        {
+          "name": "SPRING_BOOT_ADMIN_CLIENT_URL",
+          "value": "http://171.18.0.2:9020"
+        },
+        {
+          "name": "SPRING_APPLICATION_NAME",
+          "value": "fred"
+        }
+    ],
+    "useInDockerCompose": 1,
+    "useProjectDockerFile": 0,
+    "buildDockerImage": 1,
+    "startDockerImage": 1,
+    "pushDockerImage": 1
+  },
+    "environments": { 
+    "environmentDev": { 
+      "name": "Development",
+      "memory": "512", 
+      "instances": 1
+    },
+    "environmentTst": { 
+      "name": "Test",
+      "memory": "1024", 
+      "instances": 2
+    },
+    "environmentStg": { 
+      "name": "Stage",
+      "memory": "2048", 
+      "instances": 4
+    },
+    "environmentPrd": { 
+      "name": "Production",
+      "memory": "4096", 
+      "instances": 6
+    }
+  },  
+  "requires": { 
+    "kafka": { 
+      "name": "kafka",
+      "template": "docker-compose.tpl",
+      "memory": "2048", 
+      "required": 1
+    },
+    "amq": { 
+      "name": "activemq",
+      "template": "docker-compose.tpl",
+      "memory": "4096", 
+      "required": 0
+    },
+    "prometheus": { 
+      "name": "prometheus",
+      "template": "docker-compose.tpl",
+      "memory": "1024", 
+      "required": 1
+    },
+    "grafana": {
+      "name": "grafana",
+      "template": "docker-compose.tpl",
+      "memory": "1024", 
+      "required": 1
+    }
+  }
+}

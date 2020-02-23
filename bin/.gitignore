@@ -1,0 +1,7 @@
+*.iml
+*.ipr
+*.iws
+.idea
+.gradle/
+.DS_Store
+zk-single-kafka-single/

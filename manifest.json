@@ -1,0 +1,222 @@
+{ "version": "v1.00", 
+  "type": "java", 
+  "info": { 
+    "id": 1, 
+    "name": "sampleproject",
+    "repository": "git@github.com:eva-beaver/infra-tool.git",
+    "description": "Manifest Sample project.", 
+    "categories": [],
+    "environment": "Dev"
+  },
+  "build": {
+    "buildType": "Maven",     
+    "jdk": "8u131",
+    "command": " clean install",
+    "targetJcommandarName": "sample-app-0.0.1-SNAPSHOT",
+    "targetDir": "/target",
+    "useWrapper": 0,
+    "removeTarget": 1
+  },
+  "run": {
+    "command": "java -jar  ",
+    "targetJarName": "sample-app-0.0.1-SNAPSHOT",
+    "entryPointClass": "sample-app-0.0.1-SNAPSHOT",
+    "javaopts": "'-Xmx300m'"
+  },
+  "dockerFile": { 
+    "generate": 1,
+    "location": "",
+    "name": ""
+  },
+  "docker": { 
+    "baseImagePrefix": "",
+    "repoName": "evabeaver",
+    "buildImageName": "openjdk:8-jdk-alpine",
+    "_baseImageName11": "adoptopenjdk/openjdk11",
+    "baseImageName": "openjdk:8-jre-alpine",
+    "containerName": "mycontainer",
+    "version": "v1",
+    "instanceName": "dummyproject",
+    "dockerfileTemplate": "DockerfileTemplate/Dockerfile",
+    "mutilStageBuild": 0,
+    "ports": "9020:9020,9021:9021",
+    "memory": "256M",
+    "swapMemory": "100M",
+    "removeDocker": 1,
+    "saveDockerRun": 1,
+    "health": { 
+      "cmd": "curl --silent --fail localhost:9010/actuator/health || exit 1",
+      "interval": "5s",
+      "retries": "12", 
+      "timeout": "2s",     
+      "startperiod": "60s"
+    },
+    "network": "admin-network",
+    "ipAMask": "171.1.1.0/24",
+    "ipAddr": "",
+    "startNetwork": 1,
+    "springBootProfiles": "docker",
+    "environmentOptions": [
+      {
+        "name": "SPRING_BOOT_ADMIN_CLIENT_URL",
+        "value": "http://171.18.0.2:9020"
+      },
+      {
+        "name": "SPRING_APPLICATION_NAME",
+        "value": "fred"
+      }
+    ],
+    "useInDockerCompose": 1,
+    "dockerFileFormatVersion": 1,
+    "useProjectDockerFile": 0,
+    "buildDockerImage": 1,
+    "startDockerImage": 1,
+    "pushDockerImage": 1
+  },
+  "environments": [ 
+    { 
+      "name": "Development",
+      "memory": "512", 
+      "instances": 1
+    },
+    { 
+      "name": "Test",
+      "memory": "1024", 
+      "instances": 2
+    },
+    { 
+      "name": "Stage",
+      "memory": "2048", 
+      "instances": 4
+    },
+    { 
+      "name": "Production",
+      "memory": "4096", 
+      "instances": 6
+    }
+  ],  
+  "dockerCompose": {
+    "version": "2",
+    "networkName": "dev-net",
+    "networkType": "bridge",
+    "ipMask": "171.16.0.0/24",
+    "memory": "4096", 
+    "processors": 4,
+    "startAfterBuild": 1,
+    "dockerNetworks": [
+      {
+        "networkName": "infra-net",
+        "ipMask": "171.18.0.0/24"
+      },
+      {
+        "networkName": "service-net",
+        "ipMask": "171.20.0.0/24"
+      }
+    ]
+  },  
+  "requires": [
+    { 
+      "name": "local",
+      "template": "docker-compose.tpl",
+      "ipAddr": "171.1.1.4",
+      "memory": "512", 
+      "required": 1,
+      "volumes": [
+        {
+          "volName": "localdata",
+          "volDriver": "local",
+          "volCreate": 1
+        }
+      ]
+    },
+    { 
+      "name": "myStack",
+      "template": "docker-compose.tpl",
+      "ipAddr": "",
+      "memory": "2048", 
+      "required": 0,
+      "volumes": [
+      ]
+    },
+    { 
+      "name": "kafka",
+      "template": "docker-compose.tpl",
+      "ipAddr": "171.1.1.6",
+      "memory": "2048", 
+      "required": 0,
+      "volumes": [
+      ]
+    },
+    { 
+      "name": "activemq",
+      "template": "docker-compose.tpl",
+      "ipAddr": "171.1.1.10",
+      "memory": "4096", 
+      "required": 0,
+      "volumes": [
+      ]
+    },
+    { 
+      "name": "prometheus",
+      "template": "docker-compose.tpl",
+      "ipAddr": "171.1.1.12",
+      "memory": "1024", 
+      "required": 0,
+      "volumes": [
+      ]
+    },
+    {
+      "name": "grafana",
+      "template": "docker-compose.tpl",
+      "ipAddr": "171.1.1.14",
+      "memory": "1024", 
+      "required": 0,
+      "volumes": [
+      ]
+    },
+    {
+      "name": "springbootadmin",
+      "template": "docker-compose.tpl",
+      "ipAddr": "",
+      "memory": "1024", 
+      "required": 0,
+      "volumes": [
+      ]
+    },
+    {
+      "name": "elk",
+      "template": "docker-compose.tpl",
+      "ipAddr": "171.1.1.20",
+      "memory": "1024", 
+      "required": 0,
+      "volumes": [
+        {
+          "volName": "esdata2",
+          "volDriver": "local",
+          "volCreate": 0
+        }
+      ]
+    },
+    {
+      "name": "postgres",
+      "template": "docker-compose.tpl",
+      "ipAddr": "171.1.1.60",
+      "memory": "1024", 
+      "required": 0,
+      "volumes": [
+        {
+          "volName": "pgdata1",
+          "volDriver": "local",
+          "volCreate": 0
+        }
+      ]
+    }
+  ],
+  "kubernetes": {
+    "deploymentName": "democontainer",
+    "clusteripName": "demo",
+    "buildDeploymentFile": 1,
+    "applyDeploymentFile": 1,
+    "portForward": 1
+  }
+}
