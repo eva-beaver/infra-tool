@@ -12,7 +12,7 @@
       - "8080:8080"
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.5.4
+    image: baseImagePrefixdocker.elastic.co/elasticsearch/elasticsearch:6.5.4
     networks:
       helloworld:
         ipv4_address: 172.1.1.20
@@ -33,7 +33,7 @@
 #      - /tmp/data:/usr/share/elasticsearch/data
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:6.5.4
+    image: baseImagePrefixdocker.elastic.co/kibana/kibana:6.5.4
     networks:
       helloworld:
         ipv4_address: 172.1.1.30

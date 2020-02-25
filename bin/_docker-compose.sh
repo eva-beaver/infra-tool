@@ -149,6 +149,9 @@ function _buildRequiresSectionsV2 {
 
 function _buildVolumesSectionV2 {
 
+    # todo: we get all volumes from all sections, even if they are not required.
+    # Need to work out a way of knowing which volume belongs to which section.
+
     # Extract all the volumes require
     local arr_volName=(`echo "$(__get_array_items_from_array  $MANIFEST_NAME '.volName')"`);
     local arr_volDriver=(`echo "$(__get_array_items_from_array  $MANIFEST_NAME '.volDriver')"`);
@@ -181,8 +184,12 @@ function _buildVolumesSectionV2 {
 
             if (( ${arr_volCreate[index]} == 1 ));then
                 printf '%s\n' "  ${arr_volName[index]}:" \
-                    "    driver: ${arr_volDriver[index]}" \
                     >>docker-compose.yml
+
+                if [[ ${arr_volDriver[index]}  != '' ]];then
+                    printf '%s\n' "    driver: ${arr_volDriver[index]} - ${arr_volName[index]}" \
+                        >>docker-compose.yml
+                fi
             fi
 
         done

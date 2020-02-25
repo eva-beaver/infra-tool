@@ -1,5 +1,5 @@
   amqservice:
-    image: localservice/v1
+    image: baseImagePrefixlocalservice/v1
     container_name: amqservice
     ports:
      - 9010:9010

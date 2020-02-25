@@ -120,12 +120,12 @@
       "template": "docker-compose.tpl",
       "ipAddr": "171.1.1.4",
       "memory": "512", 
-      "required": 1,
+      "required": 0,
       "volumes": [
         {
           "volName": "localdata",
           "volDriver": "local",
-          "volCreate": 1
+          "volCreate": 0
         }
       ]
     },
@@ -210,6 +210,40 @@
           "volCreate": 0
         }
       ]
+    },
+    {
+      "name": "sonarqube",
+      "template": "docker-compose.tpl",
+      "ipAddr": "171.1.1.60",
+      "memory": "1024", 
+      "required": 1,
+      "volumes": [
+        {
+          "volName": "sonarqube_conf",
+          "volDriver": "",
+          "volCreate": 1
+        },
+        {
+          "volName": "sonarqube_data",
+          "volDriver": "",
+          "volCreate": 1
+        },
+        {
+          "volName": "sonarqube_extensions",
+          "volDriver": "",
+          "volCreate": 1
+        },
+        {
+          "volName": "postgresql",
+          "volDriver": "",
+          "volCreate": 1
+        },
+        {
+          "volName": "postgresql_data",
+          "volDriver": "",
+          "volCreate": 1
+        }
+      ]
     }
   ],
   "kubernetes": {
@@ -217,6 +251,6 @@
     "clusteripName": "demo",
     "buildDeploymentFile": 1,
     "applyDeploymentFile": 1,
-    "portForward": 1
+    "portForward": 0
   }
 }

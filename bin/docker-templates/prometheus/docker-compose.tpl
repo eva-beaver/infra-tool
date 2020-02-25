@@ -1,5 +1,5 @@
   prometheus:
-    image: prometheus/docker
+    image: baseImagePrefixprometheus/docker
     container_name: prometheus
     build:
       context: %s/docker-templates/prometheus

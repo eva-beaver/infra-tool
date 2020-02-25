@@ -1,5 +1,5 @@
   db:
-    image: postgres
+    image: baseImagePrefixpostgres
     restart: always
     environment:
       POSTGRES_PASSWORD: example

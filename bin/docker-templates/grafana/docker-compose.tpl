@@ -1,5 +1,5 @@
   grafana:
-    image: grafana/docker
+    image: baseImagePrefixgrafana/docker
     container_name: grafana
     build:
       context: %s/docker-templates/grafana

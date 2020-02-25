@@ -1,5 +1,5 @@
   zoo1:
-    image: zookeeper:3.4.9
+    image: baseImagePrefixzookeeper:3.4.9
     hostname: zoo1
     ports:
       - "2181:2181"
@@ -14,7 +14,7 @@
       - nwnamereplace1
 
   kafka1:
-    image: confluentinc/cp-kafka:5.3.1
+    image: baseImagePrefixconfluentinc/cp-kafka:5.3.1
     hostname: kafka1
     ports:
       - "9092:9092"
