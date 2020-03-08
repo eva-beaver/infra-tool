@@ -213,6 +213,7 @@ The template replacement fields are used in the '.tpl' files to allow generic re
 | Field                          | Example       | Use                                                     |
 | ------------------------------ | ------------- | ------------------------------------------------------- |
 | version                        | 3.7           | Version of docker-compose file.                         |
+| templateDirectory              |               | Location of template directory.                         |
 | networkName                    |               | Network name to use in docker-compose file.             |
 | networkType                    | bridge        | Network type to create in docker-compose file.          |
 | ipMask                         | 171.16.0.0/24 | Network ip mask to create in docker-compose file.       |
