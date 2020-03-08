@@ -118,7 +118,7 @@ function loadManifest {
     MANIFEST_TYPE_DOCKERCOMPOSE_PROCESSORS=$(getJsonItem $MANIFEST_NAME '.dockerCompose.processors' $MANIFEST_TYPE_DOCKERCOMPOSE_PROCESSORS)
     MANIFEST_TYPE_DOCKERCOMPOSE_STARTAFTERBUILD=$(getJsonItem $MANIFEST_NAME '.dockerCompose.startAfterBuild' $MANIFEST_TYPE_DOCKERCOMPOSE_STARTAFTERBUILD)
    
-    # require a manifest name to be set
+    # require a template directory name to be set, if not set to default
     if [ -z "${MANIFEST_TYPE_DOCKERCOMPOSE_TEMPLATEDIRECTORY}" ]
     then
         MANIFEST_TYPE_DOCKERCOMPOSE_TEMPLATEDIRECTORY=$SCRIPT_DIR_PARENT
