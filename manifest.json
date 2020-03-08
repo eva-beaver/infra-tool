@@ -97,6 +97,7 @@
   ],  
   "dockerCompose": {
     "version": "2",
+    "templateDirectory": "",
     "networkName": "dev-net",
     "networkType": "bridge",
     "ipMask": "171.16.0.0/24",

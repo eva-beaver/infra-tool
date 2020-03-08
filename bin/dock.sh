@@ -58,9 +58,7 @@ EOM
     exit 2
 }
 
-
     echo "⏲️       Starting............"
-
 
     #if [ $# == 0 ]; then usage; fi
 

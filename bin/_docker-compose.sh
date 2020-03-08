@@ -62,16 +62,16 @@ function _buildRequiresSectionsV2 {
     do
 
         # check if template file exists
-        if test -f "$SCRIPT_DIR/docker-templates/${ARR_REQUIRE_NAME[index]}/${ARR_REQUIRE_TEMPLATE[index]}"; then
-            echo "🔩       Generating    ${ARR_REQUIRE_NAME[index]} - ${ARR_REQUIRE_TEMPLATE[index]}"
+        if test -f "$MANIFEST_TYPE_DOCKERCOMPOSE_TEMPLATEDIRECTORY/docker-templates/${ARR_REQUIRE_NAME[index]}/${ARR_REQUIRE_TEMPLATE[index]}"; then
+            echo "🔩       Generating    ${ARR_REQUIRE_NAME[index]} - $MANIFEST_TYPE_DOCKERCOMPOSE_TEMPLATEDIRECTORY/docker-templates/${ARR_REQUIRE_TEMPLATE[index]}"
         else    
-            echo "❌       build failure - ${ARR_REQUIRE_NAME[index]} - ${ARR_REQUIRE_TEMPLATE[index]} does not exist!!!!"; exit 1
+            echo "❌       build failure - ${ARR_REQUIRE_NAME[index]} - $MANIFEST_TYPE_DOCKERCOMPOSE_TEMPLATEDIRECTORY/docker-templates/${ARR_REQUIRE_TEMPLATE[index]} does not exist!!!!"; exit 1
         fi
 
 
         if [ "${ARR_REQUIRE_REQUIRED[index]}" -eq 1 ];then
 
-            IFS=$'\n' read -d '' -r -a lines < $SCRIPT_DIR/docker-templates/${ARR_REQUIRE_NAME[index]}/${ARR_REQUIRE_TEMPLATE[index]}
+            IFS=$'\n' read -d '' -r -a lines < $MANIFEST_TYPE_DOCKERCOMPOSE_TEMPLATEDIRECTORY/docker-templates/${ARR_REQUIRE_NAME[index]}/${ARR_REQUIRE_TEMPLATE[index]}
             
             for line in "${lines[@]}"
             do
@@ -124,8 +124,8 @@ function _buildRequiresSectionsV2 {
                 then
                     #echo -e $line
                     #local output=$(_replaceMarkers $line)
-                    #string_replace "$SCRIPT_DIR" "$line" output
-                    local output=${line/scptdirreplace/$SCRIPT_DIR}
+                    #string_replace "$MANIFEST_TYPE_DOCKERCOMPOSE_TEMPLATEDIRECTORY" "$line" output
+                    local output=${line/scptdirreplace/$MANIFEST_TYPE_DOCKERCOMPOSE_TEMPLATEDIRECTORY}
                     local output=${output/ipreplace/${ARR_REQUIRE_IPADDR[index]}}
                     local output=${output/nwnamereplace1/$MANIFEST_TYPE_DOCKERCOMPOSE_NETWORKNAME}
                     local output=${output/baseImagePrefix/$MANIFEST_TYPE_DOCKER_BASEIMAGEPREFIX}
