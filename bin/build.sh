@@ -62,7 +62,7 @@ echo "⏲️++++++++++++++++++++++++++++++++++++++++++"
 echo "⏲️       Starting............"
 echo "⏲️++++++++++++++++++++++++++++++++++++++++++"
 
-#if [ $# == 0 ]; then usage; fi
+if [ $# == 0 ]; then usage; fi
 
     # check for required software
     require git

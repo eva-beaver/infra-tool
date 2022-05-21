@@ -1,0 +1,1 @@
+../bin/build.sh -m manifest.json -d yes
